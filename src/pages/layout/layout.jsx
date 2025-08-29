@@ -1,9 +1,12 @@
-import React from "react";
 import Navbar from "../../companents/navbar/navbar";
 import { Outlet } from "react-router-dom";
 import Header from "../../companents/header/header";
+import { useContext } from "react";
+import { ThemeContext } from "../../context/themeProvider";
 
 export default function Layout() {
+  const { theme } = useContext(ThemeContext);
+
   return (
     <section className="flex">
       <div className="fixed top-0 left-0 w-[20%]">
@@ -15,7 +18,11 @@ export default function Layout() {
           <Header />
         </div>
 
-        <div className="bg-[#0002] min-h-screen">
+        <div
+          className={`min-h-screen p-[20px] ${
+            theme === "light" ? "bg-[#F5F6FA]" : "bg-[#1B2431]"
+          }`}
+        >
           <Outlet />
         </div>
       </div>

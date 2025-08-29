@@ -20,7 +20,11 @@ export default function Navbar() {
       <div className="mb-10">
         <h2 className="text-2xl font-bold text-center">
           <span className="text-[#4880FF]">Dash</span>
-          Stack
+          <span
+            className={`${theme === "light" ? "text-[#000]" : "text-[#fff]"}`}
+          >
+            Stack
+          </span>
         </h2>
       </div>
 
@@ -32,7 +36,7 @@ export default function Navbar() {
               <NavLink
                 to={paths[index]}
                 className={({ isActive }) =>
-                  `block w-full py-2.5 text-lg rounded-md font-medium text-center transition-all
+                  `block w-full py-2.5 text-lg rounded-md text-left font-medium pl-[80px] transition-all
                   ${
                     isActive
                       ? "bg-[#4880FF] text-white"
