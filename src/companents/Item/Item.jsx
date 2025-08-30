@@ -1,8 +1,24 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "../../context/themeProvider";
 
-export default function Item({ product }) {
+export default function Item({
+  product,
+  setDeleteModalOpen,
+  setDeleteProductAction,
+  setEditModalOpen,
+  setEditProductAction,
+}) {
   const { theme } = useContext(ThemeContext);
+
+  function Delete() {
+    setDeleteProductAction(product);
+    setDeleteModalOpen(true);
+  }
+
+  function Edit() {
+    setEditProductAction(product);
+    setEditModalOpen(true);
+  }
 
   return (
     <li
@@ -11,7 +27,7 @@ export default function Item({ product }) {
       }`}
     >
       <span
-        className={`w-[25%] text-left pl-[40px]  ${
+        className={`w-[25%] text-center ${
           theme === "light" ? "text-gray-800" : "text-[#fff]"
         }`}
       >
@@ -32,6 +48,7 @@ export default function Item({ product }) {
         {product.category}
       </span>
       <span
+        onClick={Edit}
         className={`w-[25%] text-center px-[10px]    ${
           theme === "light" ? "text-gray-800" : "text-[#fff]"
         }`}
@@ -41,6 +58,7 @@ export default function Item({ product }) {
         </button>
       </span>
       <span
+        onClick={Delete}
         className={`w-[25%] text-center ${
           theme === "light" ? "text-gray-800" : "text-[#fff]"
         }`}

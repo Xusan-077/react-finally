@@ -4,6 +4,7 @@ import Layout from "./pages/layout/layout";
 import Products from "./pages/products/products";
 import Users from "./pages/users/users";
 import Settings from "./pages/Settings/Settings";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const router = createBrowserRouter([
@@ -28,7 +29,21 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+
+      <ToastContainer
+        position="top-right"
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+      />
+    </>
+  );
 }
 
 export default App;

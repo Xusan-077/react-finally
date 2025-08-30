@@ -2,37 +2,67 @@ import React, { useContext, useState } from "react";
 import Item from "../../companents/Item/Item";
 import ThemeProvider, { ThemeContext } from "../../context/themeProvider";
 import AddProductModal from "../../companents/AddProductModal/AddProductModal";
+import DeleteProductModal from "../../companents/DeleteProductModal/DeleteProductModal";
+import EditProductModal from "../../companents/EditProductModal/EditProductModal";
 
 export default function Products() {
   const product = [
     {
+      id: 1,
       title: "iphone 16 pro max",
       price: 1340,
       category: "phone",
     },
     {
+      id: 2,
       title: "iphone 14 pro max",
       price: 900,
       category: "phone",
     },
     {
+      id: 3,
       title: "MacBook air m4",
       price: 2000,
       category: "laptop",
     },
   ];
+
   const [products, setProducts] = useState(product);
+
+  const [DeleteProductAction, setDeleteProductAction] = useState(null);
+  const [EditProductAction, setEditProductAction] = useState(null);
+
   const [AddModalOpen, setAddModalOpen] = useState(false);
+  const [DeleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [EditModalOpen, setEditModalOpen] = useState(false);
 
   const { theme } = useContext(ThemeContext);
 
   return (
     <div>
+      {/* Modals */}
       {AddModalOpen && (
         <AddProductModal
           setProducts={setProducts}
           products={products}
           setAddModalOpen={setAddModalOpen}
+        />
+      )}
+
+      {DeleteModalOpen && (
+        <DeleteProductModal
+          DeleteProductAction={DeleteProductAction}
+          setproducts={setProducts}
+          setDeleteModalOpen={setDeleteModalOpen}
+        />
+      )}
+
+      {EditModalOpen && (
+        <EditProductModal
+          EditProductAction={EditProductAction}
+          setEditModalOpen={setEditModalOpen}
+          DeleteProductAction={DeleteProductAction}
+          setProducts={setProducts}
         />
       )}
 
@@ -108,7 +138,15 @@ export default function Products() {
           </div>
           <ul className={``}>
             {products.map((el, index) => (
-              <Item key={index} product={el} />
+              <Item
+                setDeleteProductAction={setDeleteProductAction}
+                setDeleteModalOpen={setDeleteModalOpen}
+                DeleteModalOpen={DeleteModalOpen}
+                setEditProductAction={setEditProductAction}
+                setEditModalOpen={setEditModalOpen}
+                key={index}
+                product={el}
+              />
             ))}
           </ul>
         </div>
