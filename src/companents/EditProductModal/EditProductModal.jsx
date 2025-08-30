@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import { ThemeContext } from "../../context/themeProvider";
 import { toast } from "react-toastify";
+import { language } from "../../Language/Language";
+import { LanguageContext } from "../../context/languageProvider";
 
 export default function EditProductModal({
   setEditModalOpen,
@@ -8,7 +10,9 @@ export default function EditProductModal({
   setProducts,
 }) {
   const [ProductData, setProductData] = useState(EditProductAction);
+
   const { theme } = useContext(ThemeContext);
+  const { lang } = useContext(LanguageContext);
 
   function saveData(evt) {
     setProductData({ ...ProductData, [evt.target.name]: evt.target.value });
@@ -43,7 +47,14 @@ export default function EditProductModal({
       >
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-xl font-semibold">Edit Product</h2>
+          <h2 className="text-xl font-semibold">
+            {" "}
+            {
+              language[lang].pages.productsPage.productsPageModals
+                .productsPageModalAdds.edit
+            }{" "}
+            {language[lang].pages.productsPage.productsPageTitle2}
+          </h2>
           <button
             onClick={() => setEditModalOpen(false)}
             className="text-2xl leading-none hover:text-red-500 transition"
@@ -59,7 +70,10 @@ export default function EditProductModal({
             name="title"
             onChange={saveData}
             type="text"
-            placeholder="Title"
+            placeholder={
+              language[lang].pages.productsPage.productsPageList
+                .productsPageTitle
+            }
             className={`px-3 py-2 rounded-lg border outline-none transition ${
               theme === "light"
                 ? "border-gray-300 focus:border-blue-500"
@@ -72,7 +86,10 @@ export default function EditProductModal({
             onChange={saveData}
             name="price"
             type="number"
-            placeholder="Price"
+            placeholder={
+              language[lang].pages.productsPage.productsPageList
+                .productsPagePrice
+            }
             className={`px-3 py-2 rounded-lg border outline-none transition ${
               theme === "light"
                 ? "border-gray-300 focus:border-blue-500"
@@ -85,7 +102,10 @@ export default function EditProductModal({
             type="text"
             onChange={saveData}
             name="category"
-            placeholder="Category"
+            placeholder={
+              language[lang].pages.productsPage.productsPageList
+                .productsPageCategory
+            }
             className={`px-3 py-2 rounded-lg border outline-none transition ${
               theme === "light"
                 ? "border-gray-300 focus:border-blue-500"
@@ -97,7 +117,10 @@ export default function EditProductModal({
             type="submit"
             className="mt-2 py-2 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition"
           >
-            Save Changes
+            {
+              language[lang].pages.productsPage.productsPageModals
+                .productsPageEditModal.productsPageEditModalBtn
+            }
           </button>
         </form>
       </div>

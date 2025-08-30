@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "../../context/themeProvider";
 import { LanguageContext } from "../../context/languageProvider";
+import { language } from "../../Language/Language";
 
 export default function Settings() {
   const { theme } = useContext(ThemeContext);
@@ -13,7 +14,7 @@ export default function Settings() {
           theme === "light" ? "text-[#000]" : "text-[#fff]"
         }`}
       >
-        Settings
+        {language[lang].pages.settingsPage.settingsPageTitle}
       </h3>
     </div>
   );

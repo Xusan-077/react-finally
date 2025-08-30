@@ -4,6 +4,8 @@ import ThemeProvider, { ThemeContext } from "../../context/themeProvider";
 import AddProductModal from "../../companents/AddProductModal/AddProductModal";
 import DeleteProductModal from "../../companents/DeleteProductModal/DeleteProductModal";
 import EditProductModal from "../../companents/EditProductModal/EditProductModal";
+import { language } from "../../Language/Language";
+import { LanguageContext } from "../../context/languageProvider";
 
 export default function Products() {
   const product = [
@@ -37,6 +39,7 @@ export default function Products() {
   const [EditModalOpen, setEditModalOpen] = useState(false);
 
   const { theme } = useContext(ThemeContext);
+  const { lang } = useContext(LanguageContext);
 
   return (
     <div>
@@ -72,13 +75,18 @@ export default function Products() {
             theme === "light" ? "text-[#000]" : "text-[#fff]"
           }`}
         >
-          Products
+          {language[lang].pages.productsPage.productsPageTitle}
         </h3>
         <button
           onClick={() => setAddModalOpen(true)}
           className={`px-[15px] py-[10px] text-[#fff] rounded-lg cursor-pointer bg-[#4880FF]`}
         >
-          + Add Product
+          +{" "}
+          {
+            language[lang].pages.productsPage.productsPageModals
+              .productsPageModalAdds.add
+          }{" "}
+          {language[lang].pages.productsPage.productsPageTitle2}
         </button>
       </div>
 
@@ -92,7 +100,7 @@ export default function Products() {
             theme === "light" ? "text-gray-800" : "text-[#fff]"
           }`}
         >
-          Protuct Details
+          {language[lang].pages.productsPage.productsPageListTitle}
         </h3>
         <div className="">
           <div
@@ -105,35 +113,50 @@ export default function Products() {
                 theme === "light" ? "text-gray-700" : "text-[#fff]"
               }`}
             >
-              Title
+              {
+                language[lang].pages.productsPage.productsPageList
+                  .productsPageTitle
+              }
             </h2>
             <h2
               className={`text-[15px] uppercase font-bold w-[20%] text-center ${
                 theme === "light" ? "text-gray-700" : "text-[#fff]"
               }`}
             >
-              Price
+              {
+                language[lang].pages.productsPage.productsPageList
+                  .productsPagePrice
+              }
             </h2>
             <h2
               className={`text-[15px] uppercase font-bold w-[20%] text-center ${
                 theme === "light" ? "text-gray-700" : "text-[#fff]"
               }`}
             >
-              Category
+              {
+                language[lang].pages.productsPage.productsPageList
+                  .productsPageCategory
+              }
             </h2>
             <h2
               className={`text-[15px] uppercase font-bold w-[20%] text-center ${
                 theme === "light" ? "text-gray-700" : "text-[#fff]"
               }`}
             >
-              edit
+              {
+                language[lang].pages.productsPage.productsPageModals
+                  .productsPageModalAdds.edit
+              }
             </h2>
             <h2
               className={`text-[15px] uppercase font-bold w-[20%] text-center ${
                 theme === "light" ? "text-gray-700" : "text-[#fff]"
               }`}
             >
-              delate
+              {
+                language[lang].pages.productsPage.productsPageModals
+                  .productsPageModalAdds.delete
+              }
             </h2>
           </div>
           <ul className={``}>

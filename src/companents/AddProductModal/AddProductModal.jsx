@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import { ThemeContext } from "../../context/themeProvider";
 import { toast } from "react-toastify";
+import { LanguageContext } from "../../context/languageProvider";
+import { language } from "../../Language/Language";
 
 export default function AddProductModal({
   setProducts,
@@ -8,6 +10,7 @@ export default function AddProductModal({
   setAddModalOpen,
 }) {
   const { theme } = useContext(ThemeContext);
+  const { lang } = useContext(LanguageContext);
 
   const [productData, setProductData] = useState({});
 
@@ -42,7 +45,13 @@ export default function AddProductModal({
         }`}
       >
         <div className="flex justify-between items-center mb-[40px]">
-          <h2 className="text-xl font-semibold">Add Product</h2>
+          <h2 className="text-xl font-semibold">
+            {
+              language[lang].pages.productsPage.productsPageModals
+                .productsPageModalAdds.add
+            }{" "}
+            {language[lang].pages.productsPage.productsPageTitle2}
+          </h2>
           <button
             onClick={() => setAddModalOpen(false)}
             className="text-2xl leading-none hover:text-red-500 transition"
@@ -56,7 +65,10 @@ export default function AddProductModal({
             name="title"
             onChange={saveData}
             type="text"
-            placeholder="Title"
+            placeholder={
+              language[lang].pages.productsPage.productsPageList
+                .productsPageTitle
+            }
             className={`px-3 py-2 rounded-lg border outline-none transition ${
               theme === "light"
                 ? "border-gray-300 focus:border-blue-500"
@@ -68,7 +80,10 @@ export default function AddProductModal({
             onChange={saveData}
             name="price"
             type="number"
-            placeholder="Price"
+            placeholder={
+              language[lang].pages.productsPage.productsPageList
+                .productsPagePrice
+            }
             className={`px-3 py-2 rounded-lg border outline-none transition ${
               theme === "light"
                 ? "border-gray-300 focus:border-blue-500"
@@ -80,7 +95,10 @@ export default function AddProductModal({
             type="text"
             onChange={saveData}
             name="category"
-            placeholder="Category"
+            placeholder={
+              language[lang].pages.productsPage.productsPageList
+                .productsPageCategory
+            }
             className={`px-3 py-2 rounded-lg border outline-none transition ${
               theme === "light"
                 ? "border-gray-300 focus:border-blue-500"
@@ -92,7 +110,11 @@ export default function AddProductModal({
             type="submit"
             className="mt-2 py-2 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition"
           >
-            Add Product
+            {
+              language[lang].pages.productsPage.productsPageModals
+                .productsPageModalAdds.add
+            }{" "}
+            {language[lang].pages.productsPage.productsPageTitle}
           </button>
         </form>
       </div>

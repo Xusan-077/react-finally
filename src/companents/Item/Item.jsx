@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "../../context/themeProvider";
+import { language } from "../../Language/Language";
+import { LanguageContext } from "../../context/languageProvider";
 
 export default function Item({
   product,
@@ -9,6 +11,7 @@ export default function Item({
   setEditProductAction,
 }) {
   const { theme } = useContext(ThemeContext);
+  const { lang } = useContext(LanguageContext);
 
   function Delete() {
     setDeleteProductAction(product);
@@ -54,7 +57,10 @@ export default function Item({
         }`}
       >
         <button className="bg-amber-500 py-[7px] px-[25px] cursor-pointer text-[#fff] rounded-[5px]">
-          Edit
+          {
+            language[lang].pages.productsPage.productsPageModals
+              .productsPageModalAdds.edit
+          }
         </button>
       </span>
       <span
@@ -64,7 +70,10 @@ export default function Item({
         }`}
       >
         <button className="bg-red-500 py-[7px] px-[25px] cursor-pointer text-[#fff] rounded-[5px]">
-          Delete
+          {
+            language[lang].pages.productsPage.productsPageModals
+              .productsPageModalAdds.delete
+          }
         </button>
       </span>
     </li>

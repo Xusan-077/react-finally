@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { ThemeContext } from "../../context/themeProvider";
 import { LanguageContext } from "../../context/languageProvider";
 import { toast } from "react-toastify";
+import { language } from "../../Language/Language";
 
 export default function DeleteProductModal({
   setDeleteModalOpen,
@@ -36,7 +37,13 @@ export default function DeleteProductModal({
       >
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-xl font-semibold">Delete Product</h2>
+          <h2 className="text-xl font-semibold">
+            {
+              language[lang].pages.productsPage.productsPageModals
+                .productsPageModalAdds.delete
+            }{" "}
+            {language[lang].pages.productsPage.productsPageTitle2}
+          </h2>
           <button
             onClick={() => setDeleteModalOpen(false)}
             className="text-2xl leading-none hover:text-red-500 transition"
@@ -48,7 +55,11 @@ export default function DeleteProductModal({
         {/* Body */}
         <div className="text-center mb-6">
           <p className="text-[18px]">
-            Are you sure you want to delete this{" "}
+            {
+              language[lang].pages.productsPage.productsPageModals
+                .productsPageDeleteModal.productsPageDeleteModalTitle
+            }{" "}
+            {""}
             <span className="font-semibold text-red-500">
               {DeleteProductAction.title}
             </span>
@@ -62,7 +73,10 @@ export default function DeleteProductModal({
             onClick={handleDelete}
             className="px-5 py-2 rounded-lg bg-red-500 text-white font-medium hover:bg-red-600 transition"
           >
-            Delete
+            {
+              language[lang].pages.productsPage.productsPageModals
+                .productsPageModalAdds.delete
+            }
           </button>
           <button
             onClick={() => setDeleteModalOpen(false)}
@@ -72,7 +86,10 @@ export default function DeleteProductModal({
                 : "bg-gray-700 hover:bg-gray-600 text-white"
             }`}
           >
-            Cancel
+            {
+              language[lang].pages.productsPage.productsPageModals
+                .productsPageModalAdds.cancel
+            }
           </button>
         </div>
       </div>
